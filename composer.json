@@ -2,7 +2,7 @@
     "name": "matrunchyk/sing4jesus.org.ua",
     "description": "Sing For Jesus Festival",
     "require": {
-      "php": ">=5.4",
+      "php": ">=7.2",
       "zendframework/zendpdf": "2.0.2",
       "johnpbloch/wordpress": "4.2",
       "fancyguy/wordpress-monolog": "dev-master",

@@ -114,3 +114,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 .speaker-item .img-circle {
     max-width: 142px;
 }
+
+.btn-default {
+    background-color: #0000007d;
+}

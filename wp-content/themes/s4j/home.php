@@ -4,6 +4,7 @@ Template Name: Головна сторінка
 */
 ?>
 <?php echo get_header();?>
+<?php echo get_template_part('navigation')?>
 <?php echo get_template_part('body-intro')?>
 <!-- About Section -->
 <section id="about" class="section dark">
