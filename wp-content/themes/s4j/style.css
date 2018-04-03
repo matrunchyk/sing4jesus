@@ -1,0 +1,116 @@
+/*
+Theme Name: Sing For Jesus
+Author: Sergii Matrunchyk
+Author URI: http://matrunchyk.net/
+Description: Sing For Jesus Theme was created for a annual christian festival called "Sing For Jesus"
+Version: 0.1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: bootstrap, festival, music, matrunchyk, jesus, christian, church
+Text Domain: s4j
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+
+#sponsors ul li {
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(100%); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+}
+
+#sponsors ul li:hover {
+    filter:none;
+    -webkit-filter:none;
+}
+
+.col-nomination a {
+    border: 1px solid transparent;
+    font-size: 20px;
+    color: #000;
+    display: inline-block;
+}
+
+.col-nomination a:hover {
+    background: none;
+    color: #2da9ff;
+    text-decoration: none;
+}
+
+.col-nomination .icon {
+    font-size: 40px;
+    border: 1px solid #333;
+    padding: 13px 18px 10px;
+    border-radius: 70px;
+    position: relative;
+    top: 27px;
+    margin-right: 7px;
+    height: 76px;
+    margin-bottom: 25px;
+}
+
+.col-nomination a:hover .icon {
+    border-color:  #2da9ff;
+}
+
+@media (min-width:400px) and (max-width: 540px) {
+    .col-nomination {
+        width: 50%;
+    }
+}
+
+@media (max-width: 399px) {
+    .col-nomination {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .text-right, .text-left {
+        text-align: center;
+    }
+
+    #schedule .nav-tabs .title {
+        font-size: 14px;
+    }
+
+    #schedule .nav-tabs .subtitle {
+        font-size: 12px;
+    }
+
+    .nav-tabs-default > .nav-tabs > li > a {
+        padding: 7px !important;
+    }
+}
+
+.page-id-89 .hero-content > .container {
+    background: rgba(0,0,0,.7);
+    padding: 25px 10px;
+}
+
+.page-id-89 .hero-content > .container p {
+    font-size: 28px;
+    line-height: 38px;
+}
+
+.page-id-89 #hero .hero-content {
+    top: 38%;
+}
+
+.page-id-89 .hero-content > .container .hl {
+    color: #f2613a;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.page-id-89 .hero-content > .container h1 {
+    font-size: 42px;
+}
+
+.nominations-chooser label {
+    line-height: 20px !important;
+}
+
+.speaker-item .img-circle {
+    max-width: 142px;
+}

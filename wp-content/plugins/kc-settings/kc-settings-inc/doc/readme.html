@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>KC Settings WordPress Plugin</title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="style.css" />
+	<style type="text/css">
+		body {
+			color:#333;
+			font:1em/1.5 'Linux Libertine', Georgia, serif;
+		}
+		body,div,h1,.desc {margin:0;padding:0}
+		h1,h2,h3,h4,h5,h6,
+		.desc, #footer {
+			color:#4e4e4e;
+			font-family: 'Linux Biolinum', 'Helvetica', sans-serif;
+			margin:1em 0 0}
+		code {
+			color:#590000;
+			-webkit-tab-size: 4;
+			-moz-tab-size: 4;
+			-ms-tab-size: 4;
+			-o-tab-size: 4;
+			tab-size: 4;
+		}
+		p code {white-space:nowrap}
+		code span {color:#008C00}
+		pre span {color:#ec871d}
+		pre {
+			color:#f8f8f8;
+			background:#212121;
+			line-height:1.5;
+			padding:1em 1.5em;
+			overflow:auto;
+			-webkit-border-radius:3px;
+			-khtml-border-radius:3px;
+			-moz-border-radius:3px;
+			border-radius:3px;
+		}
+		pre code {color:inherit}
+		.ccomment {color:#5f5a60}
+		a {
+			color:#007cba;
+			text-decoration:none}
+		a:focus, a:hover {text-decoration:underline}
+		a:active {color:#d54e21}
+		.desc {font-weight:bold}
+		.wrapper {
+			margin:0 auto;
+			width:960px}
+		#header {
+			background:#efefef;
+			border-bottom:1px solid #c6c6c6;
+			padding:16px 0}
+		#footer {
+			background:#efefef;
+			border-top:1px solid #c6c6c6;
+			font-size:.875em;
+			font-style:italic;
+			padding:5px 0}
+		#footer .wrapper {overflow:hidden}
+		.thanks {
+			float:left;
+			width:49%}
+		.fs {
+			float:right;
+			text-align:right;
+			width:49%}
+		.note {color:#888}
+		dd {margin-left:1em}
+	</style>
+</head>
+<body>
+	<div id="header">
+		<div class="wrapper">
+			<h1>KC Settings WordPress Plugin</h1>
+			<p class="desc">Easily create plugin/theme settings page, custom fields metaboxes and term meta, and user meta settings.</p>
+		</div>
+	</div>
+	<div id="page">
+		<div class="wrapper">
+			<h2 id="about">About</h2>
+			<p>This plugin is my attempt to simplify the process of adding a setting page for the <a href="http://wordpress.org/">WordPress</a> themes I was working on. It was originally <em>inspired</em> by the <a href="http://themehybrid.com/">Hybrid</a> theme. I then re-wrote it to utilize the amazing WordPress' <a href="http://codex.wordpress.org/Settings_API">Settings API</a> after reading <a href="http://ottopress.com/2009/wordpress-settings-api-tutorial/">Otto's article</a>.</p>
+
+			<h2 id="features">Features</h2>
+			<p>Currently you can use this plugin for these types of settings:</p>
+			<ul>
+				<li>Plugin/theme settings</li>
+				<li>Theme customizer (since version 2.7.4, <a href="#installation-customizer">detachable since version 2.7.6</a>)</li>
+				<li>Post metadata (custom fields)</li>
+				<li>Term metadata</li>
+				<li>User metadata</li>
+				<li>Nav menu item metadata (since version 2.7.8)</li>
+				<li>Nav menu metadata (since version 2.7.9)</li>
+			</ul>
+
+			<p>For plugin/theme setting pages, you have the option to choose between 'plain' and 'metaboxes' display types. For post metaboxes/custom fields and plugin/theme setting pages with display time set to metaboxes, you can freely set the metaboxes positions/contexts and priorities.</p>
+
+			<p>Supported input types:</p>
+			<ul>
+				<li>Single line text: <code>text</code></li>
+				<li>Multiple lines text: <code>textarea</code></li>
+				<li>Email: <code>email</code></li>
+				<li>Color: <code>color</code></li>
+				<li>Date: <code>date</code> <em class="note">(not supported in theme customizer and menu item metadata)</em></li>
+				<li>Month: <code>month</code> <em class="note">(not supported in theme customizer and menu item metadata)</em></li>
+				<li>Time: <code>time</code> <em class="note">(no polyfill yet, not supported in theme customizer and menu item metadata)</em></li>
+				<li>Datetime: <code>datetime</code> <em class="note">(no polyfill yet, not supported in theme customizer and menu item metadata)</em></li>
+				<li>Local Datetime: <code>datetime-local</code> <em class="note">(no polyfill yet, not supported in theme customizer and menu item metadata)</em></li>
+				<li>Week: <code>week</code> <em class="note">(no polyfill yet, not supported in theme customizer and menu item metadata)</em></li>
+				<li>Radio: <code>radio</code></li>
+				<li>Checkboxes: <code>checkbox</code> <em class="note">(not supported in theme customizer)</em></li>
+				<li>Dropdown select: <code>select</code></li>
+				<li>Multiple select: <code>multiselect</code> <em class="note">(not supported in theme customizer)</em></li>
+				<li>Number: <code>number</code></li>
+				<li>Password: <code>password</code></li>
+				<li>Telephone: <code>tel</code></li>
+				<li>File: <code>file</code> <em class="note">(not supported in theme customizer and menu item metadata)</em></li>
+				<li>Repeatable fields: <code>multiinput</code> <em class="note">(not supported in theme customizer, menu and menu item metadata)</em></li>
+				<li>WordPress Editor: <code>editor</code> <em class="note">(not supported in theme customizer, menu and menu item metadata)</em></li>
+				<li>Custom: <code>special</code> <em class="note">(not supported in theme customizer)</em></li>
+			</ul>
+
+			<p>If you think there are other input types that need to be added, don't hesitate to <a href="#https://github.com/kucrut/kc-settings/issues">ask</a>!</p>
+
+			<h2 id="installation">Installation</h2>
+			<dl>
+				<dt id="installation-normal">Normal</dt>
+				<dd><p>Just install it like any other WordPress plugins :)</p></dd>
+				<dt id="installation-mu">As a <a href="http://codex.wordpress.org/Must_Use_Plugins">must-use</a> plugin</dt>
+				<dd><p>Copy <code><span>kc-settings.php</span></code> and <code><span>kc-settings-inc</span></code> to your <code><span>wp-content/mu-plugins</span></code> directory <em>(don't just copy the <code><span>kc-settings</span></code> directory)</em>.</p></dd>
+				<dt id="installation-bundle">Bundle with plugin/theme</dt>
+				<dd>
+					<p>If you want to bundle KC Settings with your theme/plugin, follow these steps:</p>
+					<ol>
+						<li>Copy <code><span>kc-settings.php</span></code> and <code><span>kc-settings-inc</span></code> to your theme/plugin directory <em>(don't just copy the <code><span>kc-settings</span></code> directory)</em>.</li>
+						<li>Add this block of code to your theme's <code><span>function.php</span></code> file:
+<pre><code>function mytheme_load_kc_settings() {
+	<span class="ccomment">// Load the settings array</span>
+	require_once get_template_directory() . '/my-settings.php';
+
+	if ( class_exists('kcSettings') )
+		return;
+
+	<span class="ccomment">// This is to avoid the conflict when KC Settings is bundled in your theme/plugin <em>and</em> installed as plugin</span>
+	if ( is_admin() ) {
+		global $pagenow;
+		if (
+			$pagenow === 'plugins.php'
+			&amp;&amp; (
+				<span class="ccomment">// Single plugin activation</span>
+				( isset($_REQUEST['action']) &amp;&amp; $_REQUEST['action'] === 'activate' &amp;&amp; isset($_REQUEST['plugin']) &amp;&amp; $_REQUEST['plugin'] === 'kc-settings/kc-settings.php' )
+				|| (
+					<span class="ccomment">// Bulk activation</span>
+					!empty($_POST)
+					&amp;&amp; ( ( isset($_POST['action']) &amp;&amp; $_POST['action'] === 'activate-selected' ) || ( isset($_POST['action2']) &amp;&amp; $_POST['action2'] === 'activate-selected' ) )
+					&amp;&amp; ( isset($_POST['checked']) &amp;&amp; is_array($_POST['checked']) &amp;&amp; in_array('kc-settings/kc-settings.php', $_POST['checked']) )
+				)
+			)
+		)
+			return;
+	}
+
+	<span class="ccomment">// Use get_stylesheet_directory() if you're doing this in a child theme</span>
+	require_once get_template_directory() . '/kc-settings.php';
+	kcSettings::setup();
+}
+
+add_action( '<span>after_setup_theme</span>', 'mytheme_load_kc_settings' );
+</code></pre>
+							<p>Note: The action hook should always be <code>after_setup_theme</code> even if you're bundling KC Settings in a plugin.</p>
+						</li>
+					</ol>
+				</dd>
+				<dt id="installation-customizer">Bundle theme customizer only</dt>
+				<dd>
+					<p>If you only need the theme customizer module, copy the <code><span>theme.php</span></code> file from the <code><span>kc-settings/kc-settings-inc/</span></code> to your theme's directory then add this block of code to your theme's <code><span>function.php</span></code> file:</p>
+<pre><code>function mytheme_load_kc_customizer() {
+	<span class="ccomment">// Load the settings array</span>
+	require_once get_template_directory() . '/mytheme-settings.php';
+
+	if ( class_exists('kcSettings') )
+		return;
+
+	<span class="ccomment">// Use get_stylesheet_directory() if you're doing this in a child theme</span>
+	require_once get_template_directory() . '/theme.php';
+}
+add_action( '<span>after_setup_theme</span>', 'mytheme_load_kc_customizer', 99 );
+</code></pre>
+					<p><strong>Note:</strong> You need to make sure that your options array is valid, because the module won't do any validation. Also, I strongly suggest to rename the <code><span>theme.php</span></code> file to something else to avoid confusion :)</p>
+
+				</dd>
+			</dl>
+
+			<h2 id="options">The options</h2>
+			<p>You can either create the settings using the Builder by going to <em>Settings &raquo; KC Settings</em>, or create them manually. Note that theme customizer is not available in the Builder.</p>
+			<p>There are a few sample options files included in the <code><span>sample</span></code> directory. Copy (examine and modify) the sample options files included in the <code><span>sample</span></code> directory to your plugin/theme directory and then include them from your theme/plugin, eg. <code>require_once get_template_directory() . '/theme_options.php';</code></p>
+
+			<h2 id="get-data">Getting the data</h2>
+			<h3 id="get-data-plugin">Theme/plugin settings</h3>
+			<ul>
+				<li>
+					<h4>All data</h4>
+<pre><code><span>$prefix</span> = 'myPrefix';
+$var = kc_get_option( <span>$prefix</span> );
+<span class="ccomment">// Or, you can also use WordPress' builtin function:</span>
+$var = get_option( "<span>{$prefix}</span>_settings" );
+</code></pre>
+				</li>
+				<li>
+					<h4>Section</h4>
+<pre><code><span>$prefix</span> = 'myPrefix';
+<span>$section_id</span> = 'section_one';
+$var = kc_get_option( <span>$prefix</span>, <span>$section_id</span> );
+</code></pre>
+				</li>
+				<li>
+					<h4>Field</h4>
+<pre><code><span>$prefix</span> = 'myPrefix';
+<span>$section_id</span> = 'section_one';
+<span>$field_id</span> = 'field_one';
+$var = kc_get_option( <span>$prefix</span>, <span>$section_id</span>, <span>$field_id</span> );
+</code></pre>
+				</li>
+				<li>
+					<h4>Default values</h4>
+					<p>If you have set a default value for your field, you can get it like this:</p>
+<pre><code><span>$prefix</span> = 'myPrefix';
+<span>$section_id</span> = 'section_one';
+<span>$field_id</span> = 'field_one';
+$var = kc_get_default( 'plugin', <span>$prefix</span>, <span>$section_id</span>, <span>$field_id</span> );
+</code></pre>
+				</li>
+			</ul>
+
+			<h3 id="get-data-theme">Theme customization</h3>
+			<p>Just use standard WordPress function, but using the prefix, section ID, and field ID as the first argument, for example:</p>
+<pre><code><span>$prefix</span> = 'myPrefix';
+<span>$section_id</span> = 'section_one';
+<span>$field_id</span> = 'field_one';
+$var = get_theme_mod( "<span>{$prefix}</span>_<span>{$section_id}</span>_<span>{$field_id}</span>" ); <span class="ccomment"> // Notice the underscores</span>
+</code></pre>
+			<p>If you have set a default value for the field and want to get it when the setting hasn't been changed:</p>
+<pre><code>$var = get_theme_mod( "<span>{$prefix}</span>_<span>{$section_id}</span>_<span>{$field_id}</span>", kc_get_default('theme', <span>$prefix</span>, <span>$section_id</span>, <span>$field_id</span>) );</code></pre>
+
+			<h3 id="get-data-cfields">Custom field / Post metadata &amp; Nav menu item metadata</h3>
+			<p>Just use standard WordPress function, but prefix the meta key with an underscore, for example:</p>
+<pre><code><span>$post_id</span> = 1;
+<span>$field_id</span> = 'field_one';
+$var = get_post_meta( <span>$post_id</span>, "_<span>{$field_id}</span>", true ); <span class="ccomment"> // Notice the underscore</span>
+</code></pre>
+
+			<h3 id="get-data-termmeta">Term Metadata &amp; Nav Menu Metadata</h3>
+			<p>You can use standard WordPress function, for example:</p>
+<pre><code><span>$term_id</span> = 1;
+<span>$field_id</span> = 'field_one';
+$var = get_metadata( 'term', <span>$term_id</span>, <span>$field_id</span>, true );
+</code></pre>
+
+			<h3 id="get-data-usermeta">User Metadata</h3>
+			<p>You can use standard WordPress function, for example:</p>
+<pre><code><span>$user_id</span> = 1;
+<span>$field_id</span> = 'field_one';
+$var = get_user_meta( <span>$user_id</span>, <span>$field_id</span>, true );
+</code></pre>
+
+			<h2 id="return-values">Return values</h2>
+			<ul>
+				<li>Single line text and most HTML5 inputs: <code>string</code></li>
+				<li>Multiple lines text: <code>string</code></li>
+				<li>File (single): <code>string</code></li>
+				<li>File (multiple): <code>array</code></li>
+				<li>Date: <code>string</code></li>
+				<li>Color: <code>string</code></li>
+				<li>Checkboxes: <code>array</code></li>
+				<li>Radio: <code>string</code></li>
+				<li>Dropdown select: <code>string</code></li>
+				<li>Multiple select: <code>array</code></li>
+				<li>Repeatable fields: <code>array</code></li>
+				<li>Custom function: <code>mixed</code></li>
+			</ul>
+
+			<h2 id="validation">Validation/sanitation</h2>
+			<p>All options are filtered before added to the database. You can add your own filter(s) by using one ore more of these filters:</p>
+
+			<h3 id="validation-plugin">Theme/plugin settings</h3>
+			<ul>
+				<li>
+					<h4>By prefix:</h4>
+					<dl>
+						<dt>Filter name:</dt>
+						<dd><pre>kcv_setting_<span>prefix</span></pre></dd>
+						<dt>Example:</dt>
+						<dd>
+<pre><code>add_filter( 'kcv_setting_<span>myPrefix</span>', 'my_filter_function' );
+function my_filter_function( $data ) {
+	<span class="ccomment">// .... do something with the POST data</span>
+	return $data;
+}
+</code></pre>
+						</dd>
+					</dl>
+				</li>
+				<li>
+					<h4>By prefix &amp; section ID:</h4>
+					<dl>
+						<dt>Filter name:</dt>
+						<dd><pre>kcv_setting_<span>prefix</span>_<span>sectionID</span></pre></dd>
+						<dt>Example:</dt>
+						<dd>
+<pre><code>add_filter( 'kcv_setting_<span>myPrefix</span>_<span>mySectionID</span>', 'my_filter_function' );
+function my_filter_function( $section_data ) {
+	<span class="ccomment">// .... do something with the POST data</span>
+	return $section_data;
+}
+</code></pre>
+						</dd>
+					</dl>
+				</li>
+				<li>
+					<h4>By prefix &amp; field type:</h4>
+					<dl>
+						<dt>Filter name:</dt>
+						<dd><pre>kcv_setting_<span>prefix</span>_<span>fieldType</span></pre></dd>
+						<dt>Example:</dt>
+						<dd>
+<pre><code>add_filter( 'kcv_setting_<span>myPrefix</span>_<span>textarea</span>', 'my_filter_function' );
+function my_filter_function( $field_data ) {
+	<span class="ccomment">// .... do something with the POST data</span>
+	return $field_data;
+}
+</code></pre>
+						</dd>
+					</dl>
+				</li>
+				<li>
+					<h4>By prefix, section ID &amp; field ID:</h4>
+					<dl>
+						<dt>Filter name:</dt>
+						<dd><pre>kcv_setting_<span>prefix</span>_<span>sectionID</span>_<span>fieldID</span></pre></dd>
+						<dt>Example:</dt>
+						<dd>
+<pre><code>add_filter( 'kcv_setting_<span>myPrefix</span>_<span>mySectionID</span>_<span>myFieldID</span>', 'my_filter_function' );
+function my_filter_function( $field_data ) {
+	<span class="ccomment">// .... do something with the POST data</span>
+	return $field_data;
+}
+</code></pre>
+						</dd>
+					</dl>
+				</li>
+			</ul>
+
+			<h3 id="validation-metadata">Metadata</h3>
+			<p>You can also filter your metadata values using the filters below. Note that there are three arguments passed to these filters, and they're valid for the three metadata types (post, term and user):</p>
+			<ol>
+				<li><code>$nu_val</code>: The new metadata value from the user</li>
+				<li><code>$section</code>: The section array</li>
+				<li><code>$field</code>: The field array</li>
+			</ol>
+			<p>Example validation/sanitation function for metadata:</p>
+<pre><code>function my_filter_function( $nu_val, $section, $field ) {
+	//<span>... do someting with the data</span>
+	return $nu_val;
+}
+</code></pre>
+
+			<h3 id="validation-cfields">Custom Fields / Post metadata &amp; Nav menu item metadata</h3>
+			<ul>
+				<li>
+					<h4>By post type:</h4>
+					<dl>
+						<dt>Filter name:</dt>
+						<dd><pre><code>kcv_postmeta_<span>postType</span></code></pre></dd>
+						<dt>Example:</dt>
+						<dd><pre><code>add_filter( 'kcv_postmeta_<span>post</span>', 'my_filter_function', 10, 3 );</code></pre></dd>
+					</dl>
+					<p><strong>Note:</strong> For menu item metadata, use <code>nav_menu_item</code> as the post type.</p>
+				</li>
+				<li>
+					<h4>By post type &amp; field type:</h4>
+					<dl>
+						<dt>Filter name:</dt>
+						<dd><pre><code>kcv_postmeta_<span>postType</span>_<span>fieldType</span></code></pre></dd>
+						<dt>Example:</dt>
+						<dd><pre><code>add_filter( 'kcv_postmeta_<span>post</span>_<span>textarea</span>', 'my_filter_function', 10, 3 );</code></pre></dd>
+					</dl>
+				</li>
+				<li>
+					<h4>By post type &amp; section ID:</h4>
+					<dl>
+						<dt>Filter name:</dt>
+						<dd><pre><code>kcv_postmeta_<span>postType</span>_<span>sectionID</span></code></pre></dd>
+						<dt>Example:</dt>
+						<dd><pre><code>add_filter( 'kcv_postmeta_<span>post</span>_<span>mySectionID</span>', 'my_filter_function', 10, 3 );</code></pre></dd>
+					</dl>
+				</li>
+				<li>
+					<h4>By post type, section ID &amp; field ID:</h4>
+					<dl>
+						<dt>Filter name:</dt>
+						<dd><pre><code>kcv_postmeta_<span>postType</span>_<span>sectionID</span>_<span>fieldID</span></code></pre></dd>
+						<dt>Example:</dt>
+						<dd><pre><code>add_filter( 'kcv_postmeta_<span>post</span>_<span>mySectionID</span>_<span>fieldID</span>', 'my_filter_function', 10, 3 );</code></pre></dd>
+					</dl>
+				</li>
+			</ul>
+
+			<h3 id="validation-termmeta">Term &amp; Nav menu metadata</h3>
+			<p>The filters used for validating term meta values are very similiar with custom fields' filters. The only difference is that you'd use taxonomy name instead of post type name. Also the filters are prefixed with <code>kcv_termmeta_</code> instead of <code>kcv_postmeta_</code>. Here are the filters used:</p>
+			<p>And here are the filters:</p>
+			<ul>
+				<li>
+					<h4>By taxonomy:</h4>
+					<dl>
+						<dt>Filter name:</dt>
+						<dd><pre><code>kcv_termmeta_<span>taxonomy</span></code></pre></dd>
+						<dt>Example:</dt>
+						<dd><pre><code>add_filter( 'kcv_termmeta_<span>category</span>', 'my_filter_function', 10, 3 );</code></pre></dd>
+					</dl>
+					<p><strong>Note:</strong> For nav menu, use <code>nav_menu</code> as the taxonomy name.</p>
+				</li>
+				<li>
+					<h4>By taxonomy &amp; field type:</h4>
+					<dl>
+						<dt>Filter name:</dt>
+						<dd><pre><code>kcv_termmeta_<span>taxonomy</span>_<span>fieldType</span></code></pre></dd>
+						<dt>Example:</dt>
+						<dd><pre><code>add_filter( 'kcv_termmeta_<span>category</span>_<span>textarea</span>', 'my_filter_function', 10, 3 );</code></pre></dd>
+					</dl>
+				</li>
+				<li>
+					<h4>By taxonomy &amp; section ID:</h4>
+					<dl>
+						<dt>Filter name:</dt>
+						<dd><pre><code>kcv_termmeta_<span>taxonomy</span>_<span>sectionID</span></code></pre></dd>
+						<dt>Example:</dt>
+						<dd><pre><code>add_filter( 'kcv_termmeta_<span>category</span>_<span>mySectionID</span>', 'my_filter_function', 10, 3 );</code></pre></dd>
+					</dl>
+				</li>
+				<li>
+					<h4>By taxonomy, section ID &amp; field ID:</h4>
+					<dl>
+						<dt>Filter name:</dt>
+						<dd><pre><code>kcv_termmeta_<span>taxonomy</span>_<span>sectionID</span>_<span>fieldID</span></code></pre></dd>
+						<dt>Example:</dt>
+						<dd><pre><code>add_filter( 'kcv_termmeta_<span>category</span>_<span>mySectionID</span>_<span>fieldID</span>', 'my_filter_function', 10, 3 );</code></pre></dd>
+					</dl>
+				</li>
+			</ul>
+
+			<h3 id="validation-usermeta">User meta</h3>
+			<p>Validation/sanitation filters for user meta are very similiar with post and term meta. However, with user meta, you'll get fewer filters:</p>
+			<ul>
+				<li>
+					<h4>Filter everything:</h4>
+					<dl>
+						<dt>Filter name:</dt>
+						<dd><pre><code>kcv_usermeta</code></pre></dd>
+						<dt>Example:</dt>
+						<dd><pre><code>add_filter( 'kcv_usermeta', 'my_filter_function', 10, 3 );</code></pre></dd>
+					</dl>
+				</li>
+				<li>
+					<h4>By field type:</h4>
+					<dl>
+						<dt>Filter name:</dt>
+						<dd><pre><code>kcv_usermeta_<span>fieldType</span></code></pre></dd>
+						<dt>Example:</dt>
+						<dd><pre><code>add_filter( 'kcv_usermeta_<span>textarea</span>', 'my_filter_function', 10, 3 );</code></pre></dd>
+					</dl>
+				</li>
+				<li>
+					<h4>By section ID:</h4>
+					<dl>
+						<dt>Filter name:</dt>
+						<dd><pre><code>kcv_usermeta_<span>sectionID</span></code></pre></dd>
+						<dt>Example:</dt>
+						<dd><pre><code>add_filter( 'kcv_usermeta_<span>mySectionID</span>', 'my_filter_function', 10, 3 );</code></pre></dd>
+					</dl>
+				</li>
+				<li>
+					<h4>By section ID &amp; field ID:</h4>
+					<dl>
+						<dt>Filter name:</dt>
+						<dd><pre><code>kcv_usermeta_<span>sectionID</span>_<span>fieldID</span></code></pre></dd>
+						<dt>Example:</dt>
+						<dd><pre><code>add_filter( 'kcv_usermeta_<span>mySectionID</span>_<span>fieldID</span>', 'my_filter_function', 10, 3 );</code></pre></dd>
+					</dl>
+				</li>
+			</ul>
+
+			<h2 id="helpers">Helpers</h2>
+			<p>Since version 2.6, KC Settings comes with options helpers to make your life easier ;)</p>
+			<h3 id="helpers-var">Variables</h3>
+			<p>There are a few variables you can use to pass as field options:</p>
+			<ul>
+				<li><code>kcSettings_options::$nav_menus</code></li>
+				<li><code>kcSettings_options::$image_sizes</code></li>
+				<li><code>kcSettings_options::$image_sizes_default</code></li>
+				<li><code>kcSettings_options::$image_sizes_custom</code></li>
+				<li><code>kcSettings_options::$post_types</code> (public post types)</li>
+				<li><code>kcSettings_options::$post_types_all</code></li>
+				<li><code>kcSettings_options::$taxonomies</code> (public taxonomies)</li>
+				<li><code>kcSettings_options::$taxonomies_all</code></li>
+				<li><code>kcSettings_options::$post_statuses</code></li>
+				<li><code>kcSettings_options::$roles</code></li>
+				<li><code>kcSettings_options::$yesno</code></li>
+			</ul>
+			<p>As of version 2.7.3, you can also use a callback as the options.</p>
+
+			<h2 id="support">Links</h2>
+			<ul>
+				<li><a href="http://wordpress.org/tags/kc-settings?forum_id=10">Support / bug report</a></li>
+				<li><a href="https://github.com/kucrut/kc-settings/issues">Feature request</a></li>
+				<li><a href="http://kucrut.org/contact/">Donate / Contact</a></li>
+			</ul>
+		</div>
+		<div id="footer">
+			<div class="wrapper">
+				<p class="thanks">Thank you for using <a href="http://kucrut.org/2010/10/kc-settings/">KC Settings</a> plugin.</p>
+				<p class="fs">Powered by <a href="http://www.gnu.org/licenses/gpl.html">Free Software</a>.</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

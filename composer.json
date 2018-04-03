@@ -1,0 +1,41 @@
+{
+    "name": "matrunchyk/sing4jesus.org.ua",
+    "description": "Sing For Jesus Festival",
+    "require": {
+      "php": ">=5.4",
+      "zendframework/zendpdf": "2.0.2",
+      "johnpbloch/wordpress": "4.2",
+      "fancyguy/wordpress-monolog": "dev-master",
+      "wpackagist-plugin/advanced-custom-fields": "~4.4",
+      "wpackagist-plugin/posts-to-posts": "1.4.x",
+      "wpackagist-plugin/codepress-admin-columns": "~2.4",
+      "wpackagist-plugin/admin-menu-editor": "~1.4",
+      "wpackagist-plugin/custom-post-type-ui": "~1.0",
+      "wpackagist-plugin/kc-settings": "~2.8",
+      "wpackagist-plugin/post-types-order": "~1.7",
+      "wpackagist-plugin/options-framework": "~1.8"
+    },
+    "extra": {
+      "wordpress-install-dir": "wp",
+      "installer-paths": {
+        "wp/wp-content/plugins/{$name}/": ["type:wordpress-plugin"]
+      }
+    },
+    "repositories": [
+      {
+        "type": "composer",
+        "url": "https://packages.zendframework.com/"
+      },
+      {
+        "type": "composer",
+        "url": "https://wpackagist.org"
+      }
+    ],
+    "authors": [
+        {
+            "name": "Sergii Matrunchyk",
+            "email": "sergiy.matrunchyk@gmail.com"
+        }
+    ],
+    "minimum-stability": "beta"
+}
