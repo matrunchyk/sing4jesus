@@ -11,7 +11,7 @@ Template Name: Головна сторінка
 	<div class="container">
 		<div class="icon-wrap"><span class="icon icon-active icon-multimedia-12"></span></div>
 		<h3>Стань виконавцем</h3>
-		<div class="sub-title">Заповни форму, обравши свю номінацію з наведених <span class="highlight">нижче:</span></div>
+		<div class="sub-title">Заповни форму, обравши свою номінацію з наведених <span class="highlight">нижче:</span></div>
 		<br />
 		<br />
 		<section class="nav-tabs-simple">

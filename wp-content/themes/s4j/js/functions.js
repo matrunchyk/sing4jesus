@@ -214,3 +214,7 @@
         google.maps.event.addDomListener(window, 'load', initialize);
 
 })();
+
+new Vue({
+    el: '#app',
+});

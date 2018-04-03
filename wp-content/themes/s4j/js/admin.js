@@ -5,3 +5,7 @@
         }
     })
 })(jQuery);
+
+new Vue({
+    el: '#app',
+});

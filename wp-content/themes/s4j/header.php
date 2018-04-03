@@ -18,23 +18,23 @@
 <!-- NAVBAR
 ================================================== -->
 <body <?php body_class(); ?> id="index">
-<?php if (Theme_S4J::getOption('ga_account')):?>
-<script>
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <div id="app">
+        <?php if (Theme_S4J::getOption('ga_account')):?>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-	ga('create', '<?php echo Theme_S4J::getOption('ga_account');?>', 'auto');
-	ga('send', 'pageview');
-
-</script>
-<?php endif;?>
-<script>
-	/* <![CDATA[ */
-	window.Theme_Options = {
-		contact_latitude: <?php echo floatval(Theme_S4J::getOption('contact_latitude'))?>,
-		contact_longitude: <?php echo floatval(Theme_S4J::getOption('contact_longitude'))?>
-	}
-	/* ]]> */
-</script>
+            ga('create', '<?php echo Theme_S4J::getOption('ga_account');?>', 'auto');
+            ga('send', 'pageview');
+        </script>
+        <?php endif;?>
+        <script>
+            /* <![CDATA[ */
+            window.Theme_Options = {
+                contact_latitude: <?php echo floatval(Theme_S4J::getOption('contact_latitude'))?>,
+                contact_longitude: <?php echo floatval(Theme_S4J::getOption('contact_longitude'))?>
+            }
+            /* ]]> */
+        </script>
