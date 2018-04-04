@@ -39,19 +39,15 @@ if ( ! class_exists('Theme_S4J')):
 
         function admin_enqueue_scripts($hook)
         {
-            if (WP_DEBUG) {
-                wp_enqueue_script(
-                    'vue-js', '//cdn.jsdelivr.net/npm/vue/dist/vue.js', [], null, true
-                );
-            } else {
-                wp_enqueue_script(
-                    'vue-js', '//cdn.jsdelivr.net/npm/vue', [], null, true
-                );
-            }
-            if ('edit.php' != $hook) {
-                return;
-            }
-            wp_enqueue_script('admin_script', get_template_directory_uri() . '/js/admin.js');
+            wp_enqueue_script(
+                'vue-js', '//unpkg.com/vue', [], null, true
+            );
+//            if ($hook != 'edit.php') {
+//                return;
+//            }
+            wp_enqueue_script('admin_script', get_template_directory_uri() . '/js/admin.js', [], null);
+            wp_enqueue_script('room-availability-admin', get_template_directory_uri() . '/room_availability_admin/dist/room-availability-admin.min.js', ['vue-js'], time());
+
         }
 
         private function checkNonce()

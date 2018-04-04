@@ -41,5 +41,3 @@ if( is_admin() && file_exists(  dirname( __FILE__ ) . '/acf-vue-container-update
 }
 
 endif; // class_exists check
-
-?>
