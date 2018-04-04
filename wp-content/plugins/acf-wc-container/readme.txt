@@ -1,4 +1,4 @@
-=== Advanced Custom Fields: Vue Container ===
+=== Advanced Custom Fields: Web Component Container ===
 Contributors: matrunchyk
 Author: Serhii Matrunchyk
 Author URI: http://matrunchyk.com
@@ -22,7 +22,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 = Break free from static inputs and create multiple rows of loop-able data =
 
-The Vue Container field acts as placeholder for mounting Vue instances.
+The Web Component Container field acts as placeholder for mounting Vue instances.
 
 
 == Installation ==
@@ -31,19 +31,19 @@ This software can be treated as both a WP plugin and a theme include.
 However, only when activated as a plugin will updates be available/
 
 = Plugin =
-1. Copy the 'acf-vue-container' folder into your plugins folder
+1. Copy the 'acf-wc-container' folder into your plugins folder
 2. Activate the plugin via the Plugins admin page
 
 = Include =
-1. Copy the 'acf-vue-container' folder into your theme folder (can use sub folders)
+1. Copy the 'acf-wc-container' folder into your theme folder (can use sub folders)
    * You can place the folder anywhere inside the 'wp-content' directory
 2. Edit your functions.php file and add the following code to include the field:
 
 `
-include_once('acf-vue-container/acf-vue-container.php');
+include_once('acf-wc-container/acf-wc-container.php');
 `
-3. Make sure the path is correct to include the acf-vue-container.php file
-4. Remove the acf-vue-container-update.php file from the folder.
+3. Make sure the path is correct to include the acf-wc-container.php file
+4. Remove the acf-wc-container-update.php file from the folder.
 
 
 == Changelog ==

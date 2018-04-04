@@ -19,9 +19,41 @@ class URE_bbPress {
     protected function __construct(URE_Lib $lib) {
         
         $this->lib = $lib;
+        self::load_bbpress_files();
         
     }
     // end of __construct()
+    
+    
+    static protected function load_bbpress_files() {
+        
+        if (function_exists('bbp_get_caps_for_role')) {
+            return;
+        }
+        
+        // extract bbPress installation directory
+        $full_list = (array) get_option('active_plugins', array());
+        if (is_multisite()) {
+            $list1 = get_site_option('active_sitewide_plugins', array());
+            if (!empty($list1)) {
+                $full_list = array_merge($full_list, array_keys($list1));
+            }
+        }
+        $plugin_path = '';
+        foreach($full_list as $plugin_path) {
+            $needle = DIRECTORY_SEPARATOR .'bbpress.php';
+            if (strpos($plugin_path, $needle)!==false) {
+                break;
+            }
+        }
+        if (empty($plugin_path)) {
+            return;
+        }
+        $bbpress_dir = ABSPATH .'wp-content/plugins/'. dirname($plugin_path) .'/';
+        require_once($bbpress_dir .'includes/core/capabilities.php');
+        
+    }
+    // end of load_bbpress_files()
     
     
     static public function get_instance(URE_Lib $lib) {
@@ -31,11 +63,11 @@ class URE_bbPress {
         }
         if (!is_plugin_active('bbpress/bbpress.php')) {  // bbPress plugin is not active
             return null;            
-        }
+        }                
         
         if (self::$instance!==null) {
             return self::$instance;
-        }
+        }        
         
         if ($lib->is_pro()) {
             self::$instance = new URE_bbPress_Pro($lib);
